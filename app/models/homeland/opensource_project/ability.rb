@@ -22,7 +22,7 @@ module Homeland::OpensourceProject
     # 普通会员权限
     def roles_for_members
       can :create, OpensourceProject
-      can :update, OpensourceProject, user_id: user.id, status: OpensourceProject.statuses[:upcoming]
+      can :update, OpensourceProject, user_id: user.id
       can :destroy, OpensourceProject, user_id: user.id, status: OpensourceProject.statuses[:upcoming]
       basic_read_only
     end
