@@ -1,7 +1,10 @@
-<% title_tag t('plugin.press') %>
+<% title_tag t('plugin.opensource_project') %>
+
+<% content_for :sitemap do %>
+  <a href="/admin/opensource_projects"><%= t('plugin.opensource_project') %></a>  <i class="fa fa-angle-right"></i>  <span class="current"><%= t('plugin.uping_projects') %></span>
+<% end %>
 
 <div class="row">
-  <div class="col-md-9">
     <div id="opensource_project-upcoming" class="panel panel-default opensource_project-<%= action_name %>">
       <div class="panel-heading">待审核列表</div>
       <div class="panel-body">
@@ -28,7 +31,5 @@
 
         <%= paginate @opensource_projects %>
       </div>
-    </div>
   </div>
-  <%= render 'sidebar' %>
 </div>

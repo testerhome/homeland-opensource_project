@@ -1,4 +1,4 @@
-<div class="sidebar col-md-3 hide-ios">
+<div class="article-sidebar sidebar col-md-3 hide-ios">
   <div class="panel panel-default">
     <div class="panel-body">
       <% if can? :create, OpensourceProject %>
@@ -9,7 +9,7 @@
 
       <% if can? :publish, OpensourceProject %>
       <hr />
-      <a href="<%= upcoming_opensource_projects_path %>" data-turbolinks-action="replace">
+      <a href="<%= upcoming_admin_opensource_projects_path %>" data-turbolinks-action="replace">
         <i class="fa fa-newspaper-o"></i> 待审核列表...
       </a>
       <% end %>

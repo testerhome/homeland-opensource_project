@@ -1,19 +1,24 @@
 module Homeland::OpensourceProject
   class OpensourceProjectsController < Homeland::OpensourceProject::ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :update, :publish, :destroy]
-    before_action :set_opensource_project, only: [:show, :edit, :update, :publish, :destroy]
+    before_action :set_opensource_project, only: [:edit, :update, :publish, :destroy]
 
     def index
       @opensource_projects = OpensourceProject.includes(:user).published.order('published_at desc, id desc').page(params[:page]).per(10)
       @hot_opensource_projects = OpensourceProject.includes(:user).published.hotest.limit(9)
     end
 
-    def upcoming
-      @opensource_projects = OpensourceProject.includes(:user).upcoming.order('id desc').page(params[:page]).per(10)
-    end
-
     def show
-      @opensource_project.hits.incr(1)
+      @opensource_project = OpensourceProject.unscoped.find_by_slug!(params[:id])
+      if @opensource_project.deleted_at.blank?
+        @opensource_project.hits.incr(1)
+      else
+        if not can?(:publish, @opensource_project)
+          redirect_to opensource_projects_path, notice: "该项目已经下架"
+        else
+          @opensource_project
+        end
+      end
     end
 
     def preview

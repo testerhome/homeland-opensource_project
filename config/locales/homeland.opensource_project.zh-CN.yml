@@ -3,6 +3,7 @@
     opensource_project: "开源项目"
     no_project: "暂无任何开源项目"
     new_project: "提交开源项目"
+    uping_projects: "待审核列表"
   activerecord:
     models:
       opensource_project: "项目"

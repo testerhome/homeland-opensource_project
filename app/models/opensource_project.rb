@@ -1,4 +1,7 @@
 class OpensourceProject < ApplicationRecord
+
+  include SoftDelete
+
   belongs_to :user
   has_many :comments
 
