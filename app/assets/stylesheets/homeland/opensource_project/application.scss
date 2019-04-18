@@ -226,3 +226,8 @@
   height: 100px;
 }
 
+.opensource-project-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

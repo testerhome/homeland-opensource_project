@@ -4,7 +4,7 @@
     <%=link_to(image_tag(project_thumbnail.avatar.url, :class => "project_cover_thumbnail"), opensource_project_path(project_thumbnail)) %>
 
     <div class="caption">
-      <h3><%= project_thumbnail.title %></h3>
+      <h3 class="opensource-project-title"><%= project_thumbnail.title %></h3>
       <p class="project_summary_thumbnail"><%= project_thumbnail.summary %></p>
       <p>
       <div class="media-left">
