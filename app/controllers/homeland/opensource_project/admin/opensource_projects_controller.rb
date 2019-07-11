@@ -2,7 +2,7 @@ module Homeland::OpensourceProject::Admin
   class OpensourceProjectsController < ::Admin::ApplicationController
     layout '/layouts/admin'
 
-    before_action :set_opensource_project, only: [:undestroy, :show]
+    before_action :set_opensource_project, only: [:undestroy, :show, :suggest, :unsuggest]
 
     def index
       @opensource_projects = OpensourceProject.unscoped.includes(:user).order("id desc").page(params[:page])
@@ -21,6 +21,16 @@ module Homeland::OpensourceProject::Admin
     def undestroy
       @opensource_project.update_attribute(:deleted_at, nil)
       redirect_to(admin_opensource_projects_path)
+    end
+
+    def suggest
+      @opensource_project.update_attribute(:suggested_at, Time.now)
+      redirect_to(@opensource_project, notice: "Opensource project suggested.")
+    end
+
+    def unsuggest
+      @opensource_project.update_attribute(:suggested_at, nil)
+      redirect_to(@opensource_project, notice: "Opensource project  unsuggested.")
     end
 
     private

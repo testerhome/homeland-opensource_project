@@ -4,8 +4,11 @@ module Homeland::OpensourceProject
     before_action :set_opensource_project, only: [:edit, :update, :publish, :destroy]
 
     def index
-      @opensource_projects = OpensourceProject.includes(:user).published.order('published_at desc, id desc').page(params[:page]).per(10)
-      @hot_opensource_projects = OpensourceProject.includes(:user).published.hotest.limit(9)
+      opensource_projects_scope = OpensourceProject.includes(:user).published
+      suggest_opensource_projects = opensource_projects_scope.suggest.limit(3)
+      @opensource_projects = opensource_projects_scope.order('published_at desc, id desc').page(params[:page]).per(10)
+      hot_opensource_projects_without_suggest = opensource_projects_scope.without_suggest.published.hotest.limit(9)
+      @hot_opensource_projects = suggest_opensource_projects + hot_opensource_projects_without_suggest
     end
 
     def show

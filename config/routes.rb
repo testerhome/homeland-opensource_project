@@ -15,6 +15,8 @@ Homeland::OpensourceProject::Engine.routes.draw do
 
       member do
         post :undestroy
+        post :suggest
+        post :unsuggest
       end
     end
   end

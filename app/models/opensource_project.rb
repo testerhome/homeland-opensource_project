@@ -18,6 +18,8 @@ class OpensourceProject < ApplicationRecord
 
   scope :latest, -> { order(published_at: :desc) }
   scope :hotest, -> { order(likes_count: :desc) }
+  scope :suggest,            -> { where('suggested_at IS NOT NULL').order(suggested_at: :desc) }
+  scope :without_suggest,    -> { where(suggested_at: nil) }
 
   before_save :generate_summary
   before_create :generate_published_at

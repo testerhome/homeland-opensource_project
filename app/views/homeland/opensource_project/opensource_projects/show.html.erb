@@ -13,6 +13,15 @@
         <%= link_to '编辑', edit_opensource_project_path, class: 'btn btn-sm btn-default' %>
         <% end %>
 
+
+        <% if can?(:manage, @opensource_project) %>
+          <% if !@opensource_project.suggested_at.blank? %>
+          <%= link_to '取消置顶', unsuggest_admin_opensource_project_path, method: 'post', class: 'btn btn-sm btn-danger' %>
+        <% else %>
+            <%= link_to '置顶', suggest_admin_opensource_project_path, method: 'post', class: 'btn btn-sm btn-default' %>
+        <% end %>
+        <% end %>
+
         <% if can?(:publish, @opensource_project) && @opensource_project.upcoming? %>
         <%= link_to '审核通过', publish_opensource_project_path, method: 'put', class: 'btn btn-sm btn-success' %>
         <% end %>
