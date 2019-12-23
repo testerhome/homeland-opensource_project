@@ -40,10 +40,23 @@ class OpensourceProject < ApplicationRecord
   def published!
     self.update(published_at: Time.now)
     super
+    # 通知用户审核通过
     if self.user_id
       Notification.create(notify_type: 'opensource_project_published',
                           user_id: self.user_id,
                           target: self)
+    end
+
+    # 通知管理员审核通过
+    admin_users = User.admin_users
+    default_note = {notify_type: 'admin_opensource_project_published',
+                    target_type: OpensourceProject,
+                    target_id: self.id}
+    Notification.bulk_insert(set_size: 100) do |worker|
+      admin_users.each do |admin_user|
+        note = default_note.merge(user_id: admin_user[:id])
+        worker.add(note)
+      end
     end
   end
 
