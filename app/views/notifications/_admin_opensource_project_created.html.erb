@@ -1,0 +1,10 @@
+<%
+  opensource_project = notification.target
+%>
+<% if opensource_project.blank? %>
+  相关信息已删除
+<% else %>
+  <div class="media-heading">
+    <p>有新的开源项目提交。请进行审核：《<%= link_to(opensource_project.title, homeland_opensource_project.opensource_project_path(opensource_project)) %>》</p>
+  </div>
+<% end %>

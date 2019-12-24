@@ -44,6 +44,19 @@ module Homeland::OpensourceProject
       @opensource_project.user_id = current_user.id
 
       if @opensource_project.save
+
+        # 通知管理员有项目待审核
+        admin_users = User.admin_users
+        default_note = {notify_type: "admin_opensource_project_created", target_type: OpensourceProject,
+                        target_id: @opensource_project.id, actor_id: @opensource_project.user_id
+        }
+        Notification.bulk_insert(set_size: 100) do |worker|
+          admin_users.each do |admin_user|
+            note = default_note.merge(user_id: admin_user[:id])
+            worker.add(note)
+          end
+        end
+
         redirect_to @opensource_project, notice: '提交成功，需要等待管理员审核。'
       else
         render :new
