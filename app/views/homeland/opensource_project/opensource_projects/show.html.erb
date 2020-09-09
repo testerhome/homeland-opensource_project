@@ -55,18 +55,18 @@
           </div>
         </div>
       </div>
+    </div>
 
-        <%= social_share_button_tag @opensource_project.title %>
+    <div>
+      <%= social_share_button_tag @opensource_project.title %>
       <div class="zan">
         <% if @opensource_project.likes_count and @opensource_project.likes_count >= 1 %>
-            <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default active') %>
+        <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default active') %>
         <% else %>
-            <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default') %>
+        <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default') %>
         <% end %>
       </div>
     </div>
-
-
 
     <div class="opensource_project-body markdown">
       <%= markdown @opensource_project.body %>
