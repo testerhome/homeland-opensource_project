@@ -5,9 +5,9 @@
 <% end %>
 
 <div class="row">
-    <div id="opensource_project-upcoming" class="panel panel-default opensource_project-<%= action_name %>">
-      <div class="panel-heading">待审核列表</div>
-      <div class="panel-body">
+    <div id="opensource_project-upcoming" class="card opensource_project-<%= action_name %>">
+      <div class="card-header">待审核列表</div>
+      <div class="card-body">
         <% if @opensource_projects.blank? %>
           <div class="no-result">暂无任何文章</div>
         <% else %>

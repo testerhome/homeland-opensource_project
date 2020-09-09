@@ -5,9 +5,9 @@
   <div class="col-md-9 article-content">
 
     <%= render 'projects_thumbnail' %>
-    <div id="opensource_project-list" class="panel panel-default opensource_project-<%= action_name %>">
-      <div class="panel-heading">最新收录开源项目</div>
-      <div class="panel-body">
+    <div id="opensource_project-list" class="card opensource_project-<%= action_name %>">
+      <div class="card-header">最新收录开源项目</div>
+      <div class="card-body">
         <% if @opensource_projects.blank? %>
           <div class="no-result"><%= t('plugin.no_project') %></div>
         <% else %>

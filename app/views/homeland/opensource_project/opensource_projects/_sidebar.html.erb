@@ -1,6 +1,6 @@
 <div class="article-sidebar sidebar col-md-3 hide-ios">
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <div class="card">
+    <div class="card-body">
       <% if can? :create, OpensourceProject %>
         <%= link_to t('plugin.new_project'), new_opensource_project_path, class: 'btn btn-block btn-primary' %>
       <% end %>

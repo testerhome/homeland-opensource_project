@@ -1,14 +1,14 @@
 <% title_tag @opensource_project.title %>
 
-<div id="opensource_project-detail" class="panel panel-default">
-  <div class="panel-body">
-    <div class="opensource_project-opts clearfix">
-      <div class="pull-left">
+<div id="opensource_project-detail" class="card">
+  <div class="card-body">
+    <div class="opensource_project-opts clearfix mb-3">
+      <div class="float-left ">
         <a href="<%= opensource_projects_path %>" class="btn btn-default"><i class="fa fa-chevron-left"></i> 返回项目列表</a>
       </div>
 
       <% if @opensource_project.deleted_at.blank? %>
-      <div class="pull-right">
+      <div class="float-right">
         <% if can?(:update, @opensource_project) %>
         <%= link_to '编辑', edit_opensource_project_path, class: 'btn btn-sm btn-default' %>
         <% end %>
@@ -36,7 +36,7 @@
 
 
     <div class="media">
-      <div class="media-left">
+      <div class="mr-3">
           <%= image_tag @opensource_project.avatar.url, :class => "project_cover_media" %>
       </div>
       <div class="media-body">
