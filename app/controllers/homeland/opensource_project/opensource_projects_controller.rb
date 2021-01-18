@@ -25,8 +25,11 @@ module Homeland::OpensourceProject
     end
 
     def preview
-      out = Homeland::Markdown.call(params[:body])
-      render plain: out
+      @body = params[:body]
+
+      respond_to do |format|
+        format.json
+      end
     end
 
     def new
