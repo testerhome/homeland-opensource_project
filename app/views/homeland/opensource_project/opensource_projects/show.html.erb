@@ -74,7 +74,7 @@
 
     <div class="opensource_project-actions">
 
-      <% unless @opensource_project.user&.admin? %>
+      <% unless @opensource_project&.user&.admin? %>
         <%= reward_user_tag(@opensource_project.user, class: 'btn btn-lg btn-default') %>
       <% end %>
     </div>
