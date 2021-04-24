@@ -1,6 +1,6 @@
 module Homeland::OpensourceProject::Admin
   class OpensourceProjectsController < ::Admin::ApplicationController
-    layout '/layouts/admin'
+    layout 'layouts/admin'
 
     before_action :set_opensource_project, only: [:undestroy, :show, :suggest, :unsuggest]
 
