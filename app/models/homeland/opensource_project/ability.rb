@@ -10,7 +10,7 @@ module Homeland::OpensourceProject
         roles_for_anonymous
       elsif @user.roles?(:admin)
         can :manage, OpensourceProject
-      elsif @user.roles?(:member)
+      elsif @user.roles?(:member) or @user.roles?(:maintainer)
         roles_for_members
       else
         roles_for_anonymous
