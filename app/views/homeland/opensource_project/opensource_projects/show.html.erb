@@ -60,10 +60,13 @@
     <div>
       <%= social_share_button_tag @opensource_project.title %>
       <div class="zan">
+        <a href="<%= @opensource_project.proj_url %>" class="btn btn-primary" role="button">项目主页</a>
+        <a href="<%= @opensource_project.doc_url %>" class="btn btn-default" role="button">项目文档</a>
+
         <% if @opensource_project.likes_count and @opensource_project.likes_count >= 1 %>
-        <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default active') %>
+        <%= likeable_tag(@opensource_project, class: 'btn btn-default active') %>
         <% else %>
-        <%= likeable_tag(@opensource_project, class: 'btn btn-lg btn-default') %>
+        <%= likeable_tag(@opensource_project, class: 'btn btn-default') %>
         <% end %>
       </div>
     </div>
